@@ -1,5 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from productsapp.models import *
 # Create your views here.
+
+
 def index(request):
-    return HttpResponse("1")
+    products = Product.objects.filter(isTrending=True)
+    print(products)
+    return render(request,
+                  'index.html',
+                  {"products": products},
+                  )
