@@ -1,25 +1,26 @@
 {% extends "layout.html" %}
 {% load humanize %}
 {% block title %}
-หน้าแรก
+สินค้าทั้งหมด
 {% endblock title %}
 
 {% block content %} <!-- เนื้อหา (Content) -->
-    <section class="content2 cid-tsEQSCqggh" id="content2-2">
+     <section class="content2 cid-tsEQSCqggh" id="content2-2">
         <div class="container">
             <div class="mbr-section-head">
                 <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-                    <strong>สินค้ายอดนิยม</strong>
+                    <strong>สินค้าทั้งหมด</strong>
                 </h4>
             </div>
             <div class="row mt-4">
-                <!-- ข้อมูลสินค้า-->
+                <!-- ข้อมูลสินค้า 1 -->
+                
                 {% for i in products %}
                 <div class="item features-image сol-12 col-md-6 col-lg-4">
                     <div class="item-wrapper">
                         <div class="item-img">
-                            <a href="{% url "productDetail" i.id %}">
-                                <img src="{{i.image.url}}">
+                            <a href="details.html">
+                                <img src={{i.image.url}}>
                             </a>
                         </div>
                         <div class="item-content">
@@ -41,7 +42,19 @@
                     </div>
                 </div>
                 {% endfor %}
-            </div>
+                    
+                
+            <!-- หมายเลขหน้า -->
+            <nav aria-label="product-pagination" class="media-container-row">
+                <ul class="pagination pagination-lg">
+                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">4</a></li>
+                  <li class="page-item"><a class="page-link" href="#">5</a></li>
+                  <li class="page-item"><a class="page-link" href="#">6</a></li>
+                </ul>
+            </nav>
         </div>
     </section>
 {% endblock content %}
