@@ -164,5 +164,4 @@ ngrok.txt
 core/settings_dev.py
 manage_dev.py
 mig.bat
-env.bat
 run.bat
