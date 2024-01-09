@@ -16,7 +16,7 @@ def productDetail(request, id):
 
 
 def products(request, ):
-    products = Product.objects.all()
+    products = Product.objects.all().order_by('name')
     # หมายเลขหน้า
     page = request.GET.get('page')
     paginator = Paginator(products, 3)
