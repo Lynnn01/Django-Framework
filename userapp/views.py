@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login as alogin
+from django.contrib.auth import authenticate as auth, login as alogin, logout as alogout
 
 # Create your views here.
 
@@ -38,7 +38,7 @@ def login(request):
             return redirect("/login")
 
         else:
-            user = authenticate(request, username=username, password=password)
+            user = auth(request, username=username, password=password)
 
             if user is not None:
                 alogin(request, user)
@@ -63,4 +63,5 @@ def login(request):
 
 
 def logout(request):
-    pass
+    alogout(request)
+    return redirect("/login")

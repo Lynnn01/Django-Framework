@@ -165,3 +165,5 @@ core/settings_dev.py
 manage_dev.py
 mig.bat
 run.bat
+.vscode/
+vscode/
