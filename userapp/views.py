@@ -19,12 +19,12 @@ def register(request):
                 messages.warning(request, "ชื่อผู้ใช้ถูกใช้งานแล้ว")
                 return redirect("/register")
             else:
-                user = User.objects.create(
+                user = User.objects.create_user(
                     username=username, email=email, password=password
                 )
                 user.save()
                 messages.success(request, "สร้างบัญชีผู้ใช้เรียบร้อย")
-                return redirect("/register")
+                return redirect("/login")
     else:
         return render(request, "register.html")
 
