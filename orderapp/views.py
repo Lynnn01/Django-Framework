@@ -22,14 +22,14 @@ def order(request):
 
         for i in item:
             total += i.product.price * i.quantity
-            order = Order.objects.create(
-                fullname=fullname,
-                phone=phone,
-                address=address,
-                total=total,
-                customer=user,
-            )
-            order.save()
+        order = Order.objects.create(
+            fullname=fullname,
+            phone=phone,
+            address=address,
+            total=total,
+            customer=user,
+        )
+        order.save()
 
         for i in item:
             order_detail = OrderDetail.objects.create(
@@ -50,3 +50,22 @@ def order(request):
 
     else:
         return render(request, "order.html")
+
+
+@login_required(login_url="/login")
+def orderHistory(request):
+    user = request.user
+    order = Order.objects.filter(customer=user)
+    if order.exists():
+        return render(request, "orderhistory.html", {"order": order})
+
+    else:
+        return render(request, "orderhistory-empty.html")
+
+
+@login_required(login_url="/login")
+def orderDetail(request, order_id):
+    user = request.user
+    order = Order.objects.get(pk=order_id, customer=user)
+    item = OrderDetail.objects.filter(order=order)
+    return render(request, "orderdetails.html", {"order": order, "item": item})

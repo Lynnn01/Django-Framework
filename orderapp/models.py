@@ -18,3 +18,6 @@ class OrderDetail(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.IntegerField(default=0)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, default=None)
+
+    def sub_total(self):
+        return self.price * self.quantity
