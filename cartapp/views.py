@@ -28,7 +28,7 @@ def cart(request):
             total += i.quantity * i.product.price
     except (Cart.DoesNotExist, cartItem.DoesNotExist):
         cart = None
-        Item = None
+        item = None
 
     if cartItem.objects.filter(cart=cart).exists() == False:
         return render(request, "empty.html")
